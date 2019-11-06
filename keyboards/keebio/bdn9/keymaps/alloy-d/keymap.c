@@ -39,13 +39,31 @@
 float song1[][2] = SONG(MUSIC_SCALE_SOUND);
 float song4[][2] = SONG(BALL_GAME);
 
+#define SEND_SLACK_REACTION(emoji) SEND_STRING("+" emoji SS_TAP(X_ENTER))
+
 #define TMUX_PREFIX SS_LCTRL("x")
 #define SEND_TMUX_PREFIX SEND_STRING(TMUX_PREFIX)
 #define SEND_TMUX_COMMAND(cmd) SEND_STRING(TMUX_PREFIX cmd)
 
+#define EMOJI1 ":ok_fidget_1080p:"
+#define EMOJI2 ":nuggets:"
+#define EMOJI3 ":no_horse_talk:"
+#define EMOJI4 ":complex_smile:"
+#define EMOJI5 ":peek:"
+#define EMOJI6 ":drumroll:"
+#define EMOJI7 ":pahoinvointi:"
+
 enum custom_keycodes {
     SHIFT_ESC = SAFE_RANGE,
     LOCK,
+
+    SEMOJI1,
+    SEMOJI2,
+    SEMOJI3,
+    SEMOJI4,
+    SEMOJI5,
+    SEMOJI6,
+    SEMOJI7,
 
     TMUX_ENTER_COPY_MODE,
     TMUX_UP,
@@ -58,7 +76,8 @@ enum custom_keycodes {
 
 enum layers {
     BASE = 0,
-    TMUX
+    TMUX,
+    SLACK
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -69,15 +88,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         | Left              | Down | Right              |
      */
     [BASE] = LAYOUT(
-        KC__MUTE,   KC_PGUP, TMUX_ENTER_COPY_MODE,
-        SHIFT_ESC,  KC_PGDN, KC_ESC,
-        MO(TMUX),   KC_F24,  LOCK
+        KC__MUTE,       KC_PGUP,        TMUX_ENTER_COPY_MODE,
+        SHIFT_ESC,      KC_PGDN,        KC_ESC,
+        MO(TMUX),       MO(SLACK),      LOCK
     ),
 
     [TMUX] = LAYOUT(
-        _______,    TMUX_UP,        _______,
-        TMUX_LEFT,  TMUX_DOWN,      TMUX_RIGHT,
-        _______,    TMUX_PREV_PANE, TMUX_NEXT_PANE
+        _______,        TMUX_UP,        _______,
+        TMUX_LEFT,      TMUX_DOWN,      TMUX_RIGHT,
+        _______,        TMUX_PREV_PANE, TMUX_NEXT_PANE
+    ),
+
+    [SLACK] = LAYOUT(
+        _______,        SEMOJI1,        SEMOJI2,
+        SEMOJI3,        SEMOJI4,        SEMOJI5,
+        SEMOJI6,        _______,        SEMOJI7
     ),
 
     /*
@@ -149,6 +174,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_BSPACE);
             return false;
 
+        case SEMOJI1:
+            SEND_SLACK_REACTION(EMOJI1);
+            return false;
+        case SEMOJI2:
+            SEND_SLACK_REACTION(EMOJI2);
+            return false;
+        case SEMOJI3:
+            SEND_SLACK_REACTION(EMOJI3);
+            return false;
+        case SEMOJI4:
+            SEND_SLACK_REACTION(EMOJI4);
+            return false;
+        case SEMOJI5:
+            SEND_SLACK_REACTION(EMOJI5);
+            return false;
+        case SEMOJI6:
+            SEND_SLACK_REACTION(EMOJI6);
+            return false;
+        case SEMOJI7:
+            SEND_SLACK_REACTION(EMOJI7);
+            return false;
 
         default:
             return true;
