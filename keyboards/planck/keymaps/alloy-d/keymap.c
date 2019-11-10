@@ -381,3 +381,13 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
+
+uint16_t get_tapping_term(uint16_t keycode) {
+    switch(keycode) {
+        case NUM_SPC:
+        case NAV_SPC:
+            return TAPPING_TERM + 1000;
+        default:
+            return TAPPING_TERM;
+    }
+}

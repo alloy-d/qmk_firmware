@@ -10,6 +10,14 @@
                                 }
 #endif
 
+/* Makes mod-tap keys work the way I'd expect for fast typing. */
+#define PERMISSIVE_HOLD
+
+#define TAPPING_TERM 300
+#define TAPPING_TERM_PER_KEY
+
+#define LEADER_TIMEOUT 300
+
 /*
  * MIDI options
  */
