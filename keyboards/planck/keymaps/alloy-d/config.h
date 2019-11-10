@@ -17,6 +17,7 @@
 #define TAPPING_TERM_PER_KEY
 
 #define LEADER_TIMEOUT 300
+#define LEADER_KEY_STRICT_KEY_PROCESSING
 
 /*
  * MIDI options

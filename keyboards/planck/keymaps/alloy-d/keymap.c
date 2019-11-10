@@ -359,6 +359,15 @@ void matrix_scan_user(void) {
         SEQ_ONE_KEY(KC_KP_4) {
             layer_off(_NUM);
         }
+
+        /* Leader right space: toggle nav layer. */
+        SEQ_ONE_KEY(NAV_SPC) {
+            if (IS_LAYER_ON(_NAV)) {
+                layer_off(_NAV);
+            } else {
+                layer_on(_NAV);
+            }
+        }
     }
 
 #ifdef AUDIO_ENABLE
