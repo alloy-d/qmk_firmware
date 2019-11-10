@@ -46,6 +46,15 @@ enum planck_keycodes {
 #define NAV_SPC LT(_NAV, KC_SPC)
 #define NUM_SPC LT(_NUM, KC_SPC)
 
+//Tap Dance Declarations
+enum {
+  TD_LS_LOCK = 0
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_LS_LOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -62,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     C_T_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, S_T_QUO,
+    TD(TD_LS_LOCK), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, S_T_QUO,
     KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   NUM_SPC, NAV_SPC, RAISE,   KC_RGUI, KC_RALT, KC_RCTL, KC_LEAD
 ),
 
