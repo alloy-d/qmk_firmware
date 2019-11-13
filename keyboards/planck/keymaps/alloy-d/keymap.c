@@ -356,8 +356,8 @@ void matrix_scan_user(void) {
             }
         }
 
-        /* Leader left-shift: caps lock. */
-        SEQ_ONE_KEY(SC_LSPR) {
+        /* Leader hyper: caps lock. */
+        SEQ_ONE_KEY(KC_HYPR) {
             tap_code(KC_CAPS);
         }
     }
