@@ -34,7 +34,6 @@ enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
   PLOVER,
-  BACKLIT,
   EXT_PLV,
 
   // Space Cadet style parens/braces
@@ -53,7 +52,6 @@ enum planck_keycodes {
 #define S_T_QUO RSFT_T(KC_QUOT)
 #define NAV_SPC LT(_NAV, KC_SPC)
 #define NUM_SPC LT(_NUM, KC_SPC)
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -90,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Lower
@@ -234,64 +232,47 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         perform_space_cadet(record, KC_RSFT, KC_RSFT, KC_RBRC);
         return false;
 
-    case QWERTY:
-      if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-        #ifdef KEYBOARD_planck_rev5
-          writePinLow(E6);
-        #endif
-      } else {
-        unregister_code(KC_RSFT);
-        #ifdef KEYBOARD_planck_rev5
-          writePinHigh(E6);
-        #endif
-      }
-      return false;
-      break;
-    case PLOVER:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          stop_all_notes();
-          PLAY_SONG(plover_song);
-        #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_on(_PLOVER);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
+      case QWERTY:
+        if (record->event.pressed) {
+            print("mode just switched to qwerty and this is a huge string\n");
+            set_single_persistent_default_layer(_QWERTY);
         }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-    case EXT_PLV:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(plover_gb_song);
-        #endif
-        layer_off(_PLOVER);
-      }
-      return false;
-      break;
+        return false;
+        break;
+      case COLEMAK:
+        if (record->event.pressed) {
+            set_single_persistent_default_layer(_COLEMAK);
+        }
+        return false;
+        break;
+      case PLOVER:
+        if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+            stop_all_notes();
+            PLAY_SONG(plover_song);
+#endif
+            layer_off(_RAISE);
+            layer_off(_LOWER);
+            layer_off(_ADJUST);
+            layer_on(_PLOVER);
+            if (!eeconfig_is_enabled()) {
+                eeconfig_init();
+            }
+            keymap_config.raw = eeconfig_read_keymap();
+            keymap_config.nkro = 1;
+            eeconfig_update_keymap(keymap_config.raw);
+        }
+        return false;
+        break;
+      case EXT_PLV:
+        if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+            PLAY_SONG(plover_gb_song);
+#endif
+            layer_off(_PLOVER);
+        }
+        return false;
+        break;
   }
   return true;
 }
