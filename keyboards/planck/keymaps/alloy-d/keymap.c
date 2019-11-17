@@ -36,6 +36,7 @@ enum planck_keycodes {
   CMK_OFF,
   PLOVER,
   EXT_PLV,
+  TMUXCPY,
 
   // Space Cadet style parens/braces
   SC_LSPR,
@@ -177,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______, _______, A(KC_LEFT),   KC_PGDN,    KC_PGUP, A(KC_RGHT), _______, _______,
-    _______, _______, _______, _______, _______, _______, KC_LEFT,      KC_DOWN,    KC_UP  ,    KC_RGHT, _______, _______,
+    TMUXCPY, _______, _______, _______, _______, _______, KC_LEFT,      KC_DOWN,    KC_UP  ,    KC_RGHT, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,      KC_END,     KC_HOME,    _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,      _______,    _______,    _______, _______, _______
 ),
@@ -256,6 +257,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
       case SC_RSCB:
         perform_space_cadet(record, KC_RSFT, KC_RSFT, KC_RBRC);
+        return false;
+
+      case TMUXCPY:
+        // Enter copy mode in tmux.
+        send_string(SS_LCTRL("x")"[");
         return false;
 
       case CMK_OFF:
