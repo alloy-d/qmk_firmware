@@ -25,6 +25,7 @@ enum planck_layers {
   _LOWER,
   _RAISE,
   _PLOVER,
+  _SYM,
   _NUM,
   _NAV,
   _ADJUST
@@ -51,7 +52,7 @@ enum planck_keycodes {
 #define C_T_ESC LCTL_T(KC_ESC)
 #define S_T_QUO RSFT_T(KC_QUOT)
 #define NAV_SPC LT(_NAV, KC_SPC)
-#define NUM_SPC LT(_NUM, KC_SPC)
+#define SCRSHOT G(S(KC_4))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     C_T_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
     SC_LSPR, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SC_RSPR,
-    KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   NUM_SPC, NAV_SPC, RAISE,   KC_RGUI, KC_RALT, KC_RCTL, KC_LEAD
+    KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   NAV_SPC, KC_SPC,  RAISE,   KC_RGUI, KC_RALT, KC_RCTL, KC_LEAD
 ),
 
 /* Colemak overrides
@@ -127,6 +128,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
 
+/* Symbols (&c)
+ * ,-----------------------------------------------------------------------------------.
+ * |   ~  |   !  |   @  |   #  |   $  |   %  |      |      |      |      |      |  \   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Del  |   ^  |   &  |   *  |   -  |   =  |      |      |      |      |      |  '   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |Sft/[ |G-S-F4|  F5  |  F24 |   _  |   `  |      |      |      |      |      | ]/Sft|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_SYM] = LAYOUT_planck_grid(
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, _______, _______, _______, KC_BSLS,
+    KC_DEL,  KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  _______, _______, _______, _______, _______, KC_QUOT,
+    SC_LSBR, SCRSHOT, KC_F5,   KC_F24,  KC_UNDS, KC_GRV,  _______, _______, _______, _______, _______, SC_RSBR,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
 /* Num
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |  /   |  7   |  8   |  9   |  :   |      | (S-P == colon under software Colemak.)
@@ -135,21 +154,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |  -   |  1   |  2   |  3   | Entr |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |  +   |  0   |  0   |  .   | Entr |      |
+ * |      |      |      |      |      |      |  +   |      |  0   |  .   | Entr |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_NUM] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______, _______, KC_KP_SLASH,      KC_KP_7, KC_KP_8,  KC_KP_9,   S(KC_P),      _______,
     _______, _______, _______, _______, _______, _______, KC_KP_ASTERISK,   KC_KP_4, KC_KP_5,  KC_KP_6,   KC_KP_PLUS,   _______,
     _______, _______, _______, _______, _______, _______, KC_KP_MINUS,      KC_KP_1, KC_KP_2,  KC_KP_3,   KC_KP_ENTER,  _______,
-    _______, _______, _______, _______, _______, _______, KC_KP_PLUS,       KC_KP_0, KC_KP_0,  KC_KP_DOT, KC_KP_ENTER,  _______
+    _______, _______, _______, _______, _______, _______, KC_KP_PLUS,       _______, KC_KP_0,  KC_KP_DOT, KC_KP_ENTER,  _______
 ),
 
 /* Nav
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      | M-Lft| PgDn | PgUp |M-Rgt |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      | Left | Down |  Up  |Right |      |      |
+ * |tmuxcp|      |      |      |      |      | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      | End  | Home |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -208,7 +227,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    // Compose lower with the SYM and NUM layers.
+    if (state & (1UL << _LOWER)) {
+        state |= (1UL << _SYM) | (1UL << _NUM);
+    } else {
+        state &= ~((1UL << _SYM) | (1UL << _NUM));
+    }
+
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
