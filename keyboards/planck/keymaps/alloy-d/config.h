@@ -1,5 +1,8 @@
 #pragma once
 
+// Used by my userspace code to strip the top row of layouts.
+#define ORTHO_4X12
+
 #ifdef AUDIO_ENABLE
     //#define STARTUP_SONG SONG(PLANCK_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)
@@ -10,15 +13,6 @@
                                   SONG(DVORAK_SOUND) \
                                 }
 #endif
-
-/* Makes mod-tap keys work the way I'd expect for fast typing. */
-#define PERMISSIVE_HOLD
-
-#define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
-
-#define LEADER_TIMEOUT 300
-#define LEADER_KEY_STRICT_KEY_PROCESSING
 
 /*
  * MIDI options
