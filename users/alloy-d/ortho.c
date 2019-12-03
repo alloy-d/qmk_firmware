@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - |
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   -  |   =  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   [  |   ]  |   '  |
+ * | Bksp |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   [  |   ]  |   '  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |Sft/[ |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | | Home | End  | ]/Sft|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_ortho(
     _______, _______, _______, _______, _______, _______, _______, _______,     _______,    _______, _______, _______,
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,     KC_ASTR,    KC_MINS, KC_EQL,  KC_BSPC,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,     KC_PLUS,    KC_LBRC, KC_RBRC, KC_QUOT,
+    KC_BSPC, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,     KC_PLUS,    KC_LBRC, KC_RBRC, KC_QUOT,
     SC_LSBR, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS),  S(KC_NUBS), KC_HOME, KC_END,  SC_RSBR,
     _______, _______, _______, _______, _______, _______, _______, _______,     KC_MNXT,    KC_VOLD, KC_VOLU, KC_MPLY
 ),
@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |Sft/{ |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn | }/Sft|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+ * |      |      |      |      |      |      |TG NAV|      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_ortho(
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
     KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_QUOT,
     SC_LSCB, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, SC_RSCB,
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+    _______, _______, _______, _______, _______, _______, TG(_NAV),_______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
 
 /* Symbols (&c)
@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - +- - - |
  * |   ~  |   !  |   @  |   #  |   $  |   %  |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Del  |   ^  |   &  |   *  |   -  |   =  |      |      |      |      |      |  '   |
+ * | Bksp |   ^  |   &  |   *  |   -  |   =  |      |      |      |      |      |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |Sft/[ |G-S-F4|  F5  |   \  |   _  |   `  |      |      |      |      |      | ]/Sft|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYM] = LAYOUT_ortho(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, _______, _______, _______, _______,
-    KC_DEL,  KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  _______, _______, _______, _______, _______, KC_QUOT,
+    KC_BSPC, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  _______, _______, _______, _______, _______, KC_QUOT,
     SC_LSBR, SCRSHOT, KC_F5,   KC_BSLS, KC_UNDS, KC_GRV,  _______, _______, _______, _______, _______, SC_RSBR,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
