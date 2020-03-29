@@ -53,6 +53,10 @@ float song4[][2] = SONG(BALL_GAME);
 #define EMOJI6 ":drumroll:"
 #define EMOJI7 ":pahoinvointi:"
 
+#define MEET_MUTE G(KC_G)       // == Colemak D
+#define SLACK_MUTE KC_M         // == Colemak M
+#define WEBEX_MUTE G(S(KC_M))   // == Colemak M
+
 enum custom_keycodes {
     SHIFT_ESC = SAFE_RANGE,
     LOCK,
@@ -81,16 +85,10 @@ enum layers {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-        | Knob 1: Vol Dn/Up |      | Knob 2: Page Dn/Up |
-        | Press: Mute       | Home | Press: Play/Pause  |
-        | Hold: Layer 2     | Up   | RGB Mode           |
-        | Left              | Down | Right              |
-     */
     [BASE] = LAYOUT(
-        KC__MUTE,       KC_PGUP,        TMUX_ENTER_COPY_MODE,
-        SHIFT_ESC,      KC_PGDN,        KC_ESC,
-        MO(TMUX),       MO(SLACK),      LOCK
+        KC__MUTE,       KC_PGUP,        MEET_MUTE,
+        SHIFT_ESC,      KC_PGDN,        SLACK_MUTE,
+        MO(TMUX),       MO(SLACK),      WEBEX_MUTE
     ),
 
     [TMUX] = LAYOUT(
@@ -104,17 +102,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         SEMOJI3,        SEMOJI4,        SEMOJI5,
         SEMOJI6,        _______,        SEMOJI7
     ),
-
-    /*
-        | RESET          | N/A  | Media Stop |
-        | Held: Layer 2  | Home | RGB Mode   |
-        | Media Previous | End  | Media Next |
-     */
-    /*[1] = LAYOUT(*/
-        /*RESET  , BL_STEP, KC_STOP,*/
-        /*_______, KC_HOME, RGB_MOD,*/
-        /*KC_MPRV, KC_END , KC_MNXT*/
-    /*),*/
 };
 
 void encoder_update_user(uint8_t index, bool clockwise) {
