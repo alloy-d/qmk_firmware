@@ -1,1 +1,3 @@
-SRC += ortho.c
+ifdef ORTHO
+	SRC += ortho.c
+endif
