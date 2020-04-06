@@ -75,7 +75,11 @@ enum custom_keycodes {
     TMUX_LEFT,
     TMUX_RIGHT,
     TMUX_NEXT_PANE,
-    TMUX_PREV_PANE
+    TMUX_PREV_PANE,
+
+    PTT_MEET,
+    PTT_SLACK,
+    PTT_WEBEX
 };
 
 enum layers {
@@ -86,9 +90,9 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT(
-        KC__MUTE,       KC_PGUP,        MEET_MUTE,
-        SHIFT_ESC,      KC_PGDN,        SLACK_MUTE,
-        MO(TMUX),       MO(SLACK),      WEBEX_MUTE
+        KC__MUTE,       PTT_MEET,       MEET_MUTE,
+        SHIFT_ESC,      PTT_SLACK,      SLACK_MUTE,
+        MO(TMUX),       PTT_WEBEX,      WEBEX_MUTE
     ),
 
     [TMUX] = LAYOUT(
@@ -115,6 +119,22 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // For all of these, we want to make it look like the key was
+    // pressed both on press and release.
+    switch(keycode) {
+        case PTT_MEET:
+            SEND_STRING(SS_LGUI("d"));
+            return false;
+
+        case PTT_SLACK:
+            SEND_STRING("m");
+            return false;
+
+        case PTT_WEBEX:
+            SEND_STRING(SS_LGUI(SS_LSFT("m")));
+            return false;
+    }
+
     // We'll only operate on the press event below, so let's save
     // ourselves a bunch of repeated if statements.
     if (!record->event.pressed) {
