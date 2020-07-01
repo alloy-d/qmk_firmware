@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // I expect to mostly use this keyboard with an iPad.
     [SHORTCUTS] = LAYOUT(
         C(KC_Q), C(KC_W),       G(KC_E)/*F*/,   C(KC_R)/*P*/,   C(KC_T)/*G*/,   KC_NO/*J*/, C(KC_U)/*L*/,   KC_NO/*U*/,     KC_NO/*Y*/, S(KC_QUOTE)/*Enter*/,
-        C(KC_A), RESET/*R*/,    G(KC_D)/*S*/,   KC_NO/*T*/,     KC_NO/*D*/,     C(KC_H),    C(KC_J)/*N*/,   C(KC_K)/*E*/,   KC_NO/*I*/, KC_NO/*O*/,
+        C(KC_A), RESET/*R*/,    G(KC_D)/*S*/,   KC_NO/*T*/,     KC_NO/*D*/,     KC_BSPC,    C(KC_J)/*N*/,   C(KC_K)/*E*/,   KC_NO/*I*/, KC_NO/*O*/,
         G(KC_Z), G(KC_X),       G(KC_C),        G(KC_V),        _______,        C(KC_B),    C(KC_N)/*K*/,   KC_ENTER/*M*/)
 };
 
