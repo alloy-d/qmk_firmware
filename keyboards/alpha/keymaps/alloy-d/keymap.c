@@ -34,6 +34,8 @@ const uint16_t PROGMEM nds_combo[] = {KC_J, KC_G, KC_D, COMBO_END};
 const uint16_t PROGMEM mds_combo[] = {KC_M, KC_G, KC_D, COMBO_END};
 const uint16_t PROGMEM sq_combo[] = {KC_D, KC_Q, COMBO_END};
 const uint16_t PROGMEM dq_combo[] = {KC_G, KC_Q, COMBO_END};
+const uint16_t PROGMEM lp_combo[] = {KC_U, KC_R, COMBO_END};
+const uint16_t PROGMEM rp_combo[] = {KC_S, KC_R, COMBO_END};
 
 enum combos {
     CM_COMMA,
@@ -47,7 +49,9 @@ enum combos {
     NDS_ENDASH,
     MDS_EMDASH,
     SQ_SINGLEQUOTE,
-    DQ_DOUBLEQUOTE
+    DQ_DOUBLEQUOTE,
+    LP_LEFTPAREN,
+    RP_RIGHTPAREN
 };
 
 
@@ -63,5 +67,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [NDS_ENDASH]        = COMBO(nds_combo,  A(KC_MINS)),
     [MDS_EMDASH]        = COMBO(mds_combo,  S(A(KC_MINS))),
     [SQ_SINGLEQUOTE]    = COMBO(sq_combo,   KC_QUOTE),
-    [DQ_DOUBLEQUOTE]    = COMBO(dq_combo,   S(KC_QUOTE))
+    [DQ_DOUBLEQUOTE]    = COMBO(dq_combo,   S(KC_QUOTE)),
+    [LP_LEFTPAREN]      = COMBO(lp_combo,   S(KC_9)),
+    [RP_RIGHTPAREN]     = COMBO(rp_combo,   S(KC_0))
 };
