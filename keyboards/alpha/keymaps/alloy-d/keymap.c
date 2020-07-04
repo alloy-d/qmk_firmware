@@ -5,9 +5,9 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[HOME] = LAYOUT(
-		KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, MT(MOD_LSFT, KC_QUOTE),
+		KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, LT(SHORTCUTS, KC_QUOTE),
 		KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN,
-		KC_Z, KC_X, KC_C, KC_V, LT(SHORTCUTS, KC_SPC), KC_B, KC_N, KC_M),
+		KC_Z, KC_X, KC_C, KC_V, MT(MOD_LSFT, KC_SPC), KC_B, KC_N, KC_M),
 
     // I get one commonly used shortcut per letter.  Probably either
     // ctrl or GUI (cmd).  It's extra complicated because I use software
@@ -16,9 +16,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // These are mostly optimized for Apple-style shortcuts, since
     // I expect to mostly use this keyboard with an iPad.
     [SHORTCUTS] = LAYOUT(
-        C(KC_Q), C(KC_W),       G(KC_E)/*F*/,   C(KC_R)/*P*/,   C(KC_T)/*G*/,   KC_NO/*J*/, C(KC_U)/*L*/,   KC_NO/*U*/,     KC_NO/*Y*/, S(KC_QUOTE)/*Enter*/,
+        C(KC_Q), C(KC_W),       G(KC_E)/*F*/,   C(KC_R)/*P*/,   C(KC_T)/*G*/,   KC_NO/*J*/, C(KC_U)/*L*/,   KC_NO/*U*/,     KC_NO/*Y*/, _______/*Enter*/,
         C(KC_A), RESET/*R*/,    G(KC_D)/*S*/,   KC_NO/*T*/,     KC_NO/*D*/,     KC_BSPC,    C(KC_J)/*N*/,   C(KC_K)/*E*/,   KC_NO/*I*/, KC_NO/*O*/,
-        G(KC_Z), G(KC_X),       G(KC_C),        G(KC_V),        _______,        C(KC_B),    C(KC_N)/*K*/,   KC_ENTER/*M*/)
+        G(KC_Z), G(KC_X),       G(KC_C),        G(KC_V),        KC_ENTER/*Spc*/,C(KC_B),    C(KC_N)/*K*/,   KC_ENTER/*M*/)
 };
 
 // All adjusted for software Colemak.
