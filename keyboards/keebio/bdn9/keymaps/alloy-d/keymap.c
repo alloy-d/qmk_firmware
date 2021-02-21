@@ -53,9 +53,11 @@ float song4[][2] = SONG(BALL_GAME);
 #define EMOJI6 ":drumroll:"
 #define EMOJI7 ":pahoinvointi:"
 
-#define MEET_MUTE G(KC_G)       // == Colemak D
-#define SLACK_MUTE KC_M         // == Colemak M
-#define WEBEX_MUTE G(S(KC_M))   // == Colemak M
+#define MUTE_MEET G(KC_G)       // == Colemak D
+#define MUTE_SLACK KC_M         // == Colemak M
+#define MUTE_WEBEX G(S(KC_M))   // == Colemak M
+#define MUTE_ZOOM G(S(KC_A))    // == Colemak A
+#define PTT_ZOOM KC_SPC
 
 enum custom_keycodes {
     SHIFT_ESC = SAFE_RANGE,
@@ -90,9 +92,9 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT(
-        KC__MUTE,       PTT_MEET,       MEET_MUTE,
-        SHIFT_ESC,      PTT_SLACK,      SLACK_MUTE,
-        MO(TMUX),       PTT_WEBEX,      WEBEX_MUTE
+        KC__MUTE,       PTT_MEET,       MUTE_MEET,
+        SHIFT_ESC,      PTT_SLACK,      MUTE_SLACK,
+        MO(TMUX),       PTT_ZOOM,       MUTE_ZOOM
     ),
 
     [TMUX] = LAYOUT(
@@ -108,12 +110,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+void encoder_update_user(uint8_t index, bool counterclockwise) {
     if (index == 0) {
-        if (clockwise) {
-            tap_code(KC__VOLUP);
-        } else {
+        if (counterclockwise) {
             tap_code(KC__VOLDOWN);
+        } else {
+            tap_code(KC__VOLUP);
         }
     }
 }
