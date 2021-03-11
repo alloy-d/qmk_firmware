@@ -277,22 +277,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
       case SC_LSPR:
-        perform_space_cadet(record, KC_LSFT, KC_LSFT, KC_9);
+        perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_9);
         return false;
       case SC_RSPR:
-        perform_space_cadet(record, KC_RSFT, KC_RSFT, KC_0);
+        perform_space_cadet(record, keycode, KC_RSFT, KC_RSFT, KC_0);
         return false;
       case SC_LSBR:
-        perform_space_cadet(record, KC_LSFT, _______, KC_LBRC);
+        perform_space_cadet(record, keycode, KC_LSFT, _______, KC_LBRC);
         return false;
       case SC_RSBR:
-        perform_space_cadet(record, KC_RSFT, _______, KC_RBRC);
+        perform_space_cadet(record, keycode, KC_RSFT, _______, KC_RBRC);
         return false;
       case SC_LSCB:
-        perform_space_cadet(record, KC_LSFT, KC_LSFT, KC_LBRC);
+        perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_LBRC);
         return false;
       case SC_RSCB:
-        perform_space_cadet(record, KC_RSFT, KC_RSFT, KC_RBRC);
+        perform_space_cadet(record, keycode, KC_RSFT, KC_RSFT, KC_RBRC);
         return false;
 
       case TMUXCPY:
