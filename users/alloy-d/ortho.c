@@ -46,6 +46,10 @@ enum custom_keycodes {
   SC_RSBR,
   SC_LSCB,
   SC_RSCB,
+  SC_LCBR,
+  SC_RCBR,
+  SC_LACB,
+  SC_RACB,
 
   KEYMAP_SAFE_RANGE,    // for keys in keymaps
 };
@@ -77,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,
     C_T_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
     SC_LSPR, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SC_RSPR,
-    KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  RAISE,   KC_SPC,  KC_RGUI, KC_RALT, KC_RCTL, KC_HYPR
+    KC_HYPR, SC_LCBR, SC_LACB, KC_LGUI, LOWER,   KC_SPC,  RAISE,   KC_SPC,  KC_RGUI, SC_RACB, SC_RCBR, KC_HYPR
 ),
 
 /* Colemak overrides
@@ -294,6 +298,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case SC_RSCB:
         perform_space_cadet(record, keycode, KC_RSFT, KC_RSFT, KC_RBRC);
         return false;
+      case SC_LCBR:
+        perform_space_cadet(record, keycode, KC_LCTL, _______, KC_LBRC);
+        return false;
+      case SC_RCBR:
+        perform_space_cadet(record, keycode, KC_RCTL, _______, KC_RBRC);
+        return false;
+      case SC_LACB:
+        perform_space_cadet(record, keycode, KC_LALT, KC_LSFT, KC_LBRC);
+        return false;
+      case SC_RACB:
+        perform_space_cadet(record, keycode, KC_RALT, KC_RSFT, KC_RBRC);
+        return false;
+
 
       case TMUXCPY:
         // Enter copy mode in tmux.
