@@ -46,10 +46,14 @@ enum custom_keycodes {
   SC_RSBR,
   SC_LSCB,
   SC_RSCB,
-  SC_LCBR,
-  SC_RCBR,
   SC_LACB,
   SC_RACB,
+  SC_LCBR,
+  SC_RCBR,
+  SC_LABR,
+  SC_RABR,
+  SC_LCCB,
+  SC_RCCB,
 
   KEYMAP_SAFE_RANGE,    // for keys in keymaps
 };
@@ -204,9 +208,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NAV] = LAYOUT_ortho(
     _______, _______, _______, _______, _______, _______, _______,      _______,    _______,    _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, A(KC_LEFT),   KC_PGDN,    KC_PGUP, A(KC_RGHT), _______, _______,
+    _______, _______, _______, _______, _______, _______, C(KC_LEFT),   KC_PGDN,    KC_PGUP, C(KC_RGHT), _______, _______,
     _______, _______, _______, _______, _______, _______, KC_LEFT,      KC_DOWN,    KC_UP  ,    KC_RGHT, _______, TMUXCPY,
-    _______, _______, _______, _______, _______, _______, _______,      KC_END,     KC_HOME,    _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, KC_HOME,      KC_END,     KC_HOME,    KC_END,  _______, _______,
     _______, _______, _______, _______, _______, _______, _______,      _______,    _______,    _______, _______, _______
 ),
 
@@ -309,6 +313,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
       case SC_RACB:
         perform_space_cadet(record, keycode, KC_RALT, KC_RSFT, KC_RBRC);
+        return false;
+      case SC_LCCB:
+        perform_space_cadet(record, keycode, KC_LCTL, KC_LSFT, KC_LBRC);
+        return false;
+      case SC_RCCB:
+        perform_space_cadet(record, keycode, KC_RCTL, KC_RSFT, KC_RBRC);
+        return false;
+      case SC_LABR:
+        perform_space_cadet(record, keycode, KC_LALT, _______, KC_LBRC);
+        return false;
+      case SC_RABR:
+        perform_space_cadet(record, keycode, KC_RALT, _______, KC_RBRC);
         return false;
 
 
