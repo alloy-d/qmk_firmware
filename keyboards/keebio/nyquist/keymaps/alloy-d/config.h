@@ -1,7 +1,7 @@
 #pragma once
 
 // Used by my userspace code to strip the top row of layouts.
-#define ORTHO_5X12
+#define ORTHO_4X12
 
 #ifdef AUDIO_ENABLE
     //#define STARTUP_SONG SONG(PLANCK_SOUND)
