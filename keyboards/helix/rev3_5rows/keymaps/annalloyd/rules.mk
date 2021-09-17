@@ -1,0 +1,4 @@
+ORTHO = yes
+WPM_ENABLE = yes
+RGBLIGHT_ENABLE = no
+ENCODER_ENABLE = no
