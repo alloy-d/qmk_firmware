@@ -15,7 +15,10 @@
  */
 
 #include QMK_KEYBOARD_H
+#ifdef AUDIO_ENABLE
 #include "muse.h"
+#endif
+
 #include "ortho.h"
 
 extern keymap_config_t keymap_config;
@@ -144,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_ortho(
-    KC_INS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_SYSREQ,
+    KC_INS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_SYRQ,
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, _______, _______, _______, KC_BSLS,
     KC_BSPC, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, _______, _______, _______, _______, _______,
     SC_LSCB, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, SC_RSCB,
@@ -251,9 +254,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_ortho(
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
-    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    KC_LOCK, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, CMK_OFF, CMK_ON,   _______, PLOVER,  _______,
-    KC_CAPS, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
+    _______, QK_BOOT, DB_TOGG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
+    QK_LOCK, _______, _______, _______, _______, AG_NORM, AG_SWAP, CMK_OFF, CMK_ON,   _______, PLOVER,  _______,
+    KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 )
 
@@ -330,7 +333,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       case TMUXCPY:
         // Enter copy mode in tmux.
-        send_string(SS_LCTRL("x")"[");
+        send_string(SS_LCTL("x")"[");
         return false;
 
       case CMK_OFF:

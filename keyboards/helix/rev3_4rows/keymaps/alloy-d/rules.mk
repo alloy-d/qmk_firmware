@@ -1,1 +1,2 @@
 ORTHO = yes
+AUDIO_ENABLE = no
